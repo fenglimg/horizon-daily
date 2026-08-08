@@ -19,6 +19,10 @@ title: Home
 
 <ul>
   {% assign zh_posts = site.posts | where: "lang", "zh" %}
+  {% if zh_posts == empty %}
+    {% assign zh_posts = site.posts | where: "lang", "en" %}
+    <li><em>当前归档为英文</em></li>
+  {% endif %}
   {% for post in zh_posts limit:20 %}
     <li>
       <a href="{{ post.url | relative_url }}">{{ post.date | date: "%Y-%m-%d" }}</a>
