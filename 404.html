@@ -1,0 +1,17 @@
+---
+layout: default
+title: Page not found
+---
+
+<script>
+  (function () {
+    var target = window.location.pathname.replace(/-zh\.html$/, '-en.html');
+    if (target !== window.location.pathname && /\/history-[^/]+-en\.html$/.test(target)) {
+      window.location.replace(target + window.location.search + window.location.hash);
+    }
+  }());
+</script>
+
+# Page not found
+
+[Return to Horizon Daily]({{ '/' | relative_url }})

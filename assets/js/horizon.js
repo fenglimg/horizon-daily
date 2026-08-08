@@ -100,7 +100,13 @@
       } else if (lang === 'zh' && /-en(?:\.html)?$/.test(path.replace(/\/$/, ''))) {
         target = path.replace(/-en(\.html)?$/, '-zh$1').replace(/-en\/$/, '-zh/');
       }
-      if (target) window.location.href = target;
+      if (target) {
+        fetch(target, { method: 'HEAD', cache: 'no-store' })
+          .then(function (response) {
+            if (response.ok) window.location.href = target;
+          })
+          .catch(function () { /* Keep the current article when no counterpart exists. */ });
+      }
     }
 
     function setLang(lang) {
